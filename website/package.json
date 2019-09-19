@@ -1,0 +1,15 @@
+{
+  "name": "lucaelsen.de-3d",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy-debug": "node deploy-scripts/deploy-debug.js"
+  },
+  "author": "Luca Elsen",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^3.6.3"
+  }
+}
