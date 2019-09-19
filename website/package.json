@@ -4,12 +4,19 @@
   "description": "-",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy-debug": "node deploy-scripts/deploy-debug.js"
+    "debugall": "node deploy-scripts/deploy-debug.js && npm run tsbuild && npm run copy-stuff",
+    "tsbuild": "tsc -p .",
+    "copy-stuff": "copyfiles src/**/* dist -e src/ts/**/* -e src/less -V -f"
   },
   "author": "Luca Elsen",
   "license": "ISC",
-  "dependencies": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Topograph/website3d-npm.git"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.1.1",
     "typescript": "^3.6.3"
-  }
+  },
+  "dependencies": {}
 }
