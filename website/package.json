@@ -6,7 +6,7 @@
   "scripts": {
     "debugall": "node deploy-scripts/deploy-debug.js && npm run tsbuild && npm run lessbuild && npm run copy-stuff",
     "tsbuild": "tsc -p .",
-    "copy-stuff": "copyfiles src/**/* dist -e src/ts/**/* -e src/less -V -f",
+    "copy-stuff": "copyfiles src/**/* dist -e src/ts/**/* -e src/less/**/* -V -f",
     "lessbuild": "lessc src/less/main.less dist/css/main.css"
   },
   "author": "Luca Elsen",
