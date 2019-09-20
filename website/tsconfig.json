@@ -4,7 +4,7 @@
         "module": "amd",
         "declaration": false, //LFE: keine deklaration erzeugen. Wir sind ja nur native frontend lurche
         //   "outDir": "./dist",
-        "outFile": "./dist/js/bundle.js",
+        "outFile": "./../../dist/public/js/bundle.js",
         "strict": true
     },
     "include": [
@@ -12,6 +12,7 @@
     ],
     "exclude": [
         "node_modules",
+        "./../../node_modules",
         "**/__tests__/*"
     ]
 }

@@ -3,19 +3,36 @@
   "version": "1.0.0",
   "description": "-",
   "main": "index.js",
-  "scripts": {
-    "debugall": "node deploy-scripts/deploy-debug.js && npm run tsbuild && npm run lessbuild && npm run copy-stuff",
-    "tsbuild": "tsc -p .",
-    "copy-stuff": "copyfiles src/**/* dist -e src/ts/**/* -e src/less/**/* -V -f",
-    "lessbuild": "lessc src/less/main.less dist/css/main.css"
-  },
   "author": "Luca Elsen",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/Topograph/website3d-npm.git"
   },
+
+  "scripts": {
+    "debug build scripts": "--comment--",
+    "debugall": "npm run cleandebug && npm run tsbuilddebug && npm run lessbuild && npm run copy-stuff-debug",
+    "debugfast": "npm run tsbuilddebug && npm run lessbuild",
+
+    "public build scripts": "--comment--",
+    "publicall": "npm run cleanpublic && npm run tsbuildpublic && npm run lessbuildpublic && npm run copy-stuff-public",
+
+    "compiler scripts": "--comment--",
+    "tsbuilddebug": "tsc -p ./deploy-scripts/tsconfigs/debug.json",
+    "tsbuildpublic": "tsc -p ./deploy-scripts/tsconfigs/public.json",
+    "lessbuild": "lessc src/less/main.less dist/debug/css/main.css",
+    "lessbuildpublic": "lessc src/less/main.less dist/public/css/main.css",
+
+    "file operation scripts": "--comment--",
+    "copy-stuff-debug": "copyfiles -V --flat --all -e src/ts/**/* -e src/less/**/* src/**/* src/* dist/debug",
+    "copy-stuff-public": "copyfiles -V --flat --all -e src/ts/**/* -e src/less/**/* src/**/* src/* dist/public",
+    "cleandebug": "node deploy-scripts/clean-output.js --dist/debug",
+    "cleanpublic": "node deploy-scripts/clean-output.js --dist/public" 
+  },
+  
   "devDependencies": {
+    "@types/jquery": "^3.3.31",
     "copyfiles": "^2.1.1",
     "less": "^3.10.3",
     "typescript": "^3.6.3"
