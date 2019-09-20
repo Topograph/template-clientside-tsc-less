@@ -19,13 +19,13 @@
     "tsbuilddebug": "tsc -p ./deploy-scripts/tsconfigs/debug.json",
     "tsbuildpublic": "tsc -p ./deploy-scripts/tsconfigs/public.json",
     "lessbuild": "lessc src/less/main.less dist/debug/css/main.css",
-    "lessbuildpublic": "lessc src/less/main.less dist/public/css/main.css",
+    "lessbuildpublic": "lessc src/less/main.less dist/public/css/main.css -x",
     "file operation scripts": "--comment--",
     "copy-stuff-debug": "copyfiles -V --flat --all -e src/ts/**/* -e src/less/**/* src/**/* src/* dist/debug",
     "copy-stuff-public": "copyfiles -V --flat --all -e src/ts/**/* -e src/less/**/* src/**/* src/* dist/public",
     "cleandebug": "node deploy-scripts/clean-output.js --dist/debug",
     "cleanpublic": "node deploy-scripts/clean-output.js --dist/public",
-    "uglifyjs": "uglifyjs --compress --mangle --output dist/public/js/bundle.js -- dist/public/js/bundle.js " //TODO:: AUFRUFEN NACH PUBLIC BUILD. COMPRESSIONSGRADERMITTELN, LESS MINIFY, HTML Publisher einträge compilieren
+    "uglifyjs": "uglifyjs --compress --mangle --output dist/public/js/bundle.js -- dist/public/js/bundle.js " 
   },
   "devDependencies": {
     "@types/jquery": "^3.3.31",

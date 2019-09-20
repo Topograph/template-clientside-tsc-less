@@ -1,7 +1,7 @@
 {
     "extends": "./../../tsconfig.json",
     "compilerOptions": {
-        "outFile": "./../../dist/debug/js/bundle.js"
+        "outFile": "./../../dist/public/js/bundle.js"
     },
     "exclude": [
         "node_modules",

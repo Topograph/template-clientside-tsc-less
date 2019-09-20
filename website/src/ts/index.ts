@@ -7,5 +7,15 @@ class lurch {
             alert("yeeeehaaw!");
         });
 
+        let testvar = true;
+
+        testvar = false;
+
+        this.tryFunctionname(testvar);
+
+    }
+
+    private tryFunctionname(kokolores: boolean) {
+        console.log(kokolores);
     }
 }
