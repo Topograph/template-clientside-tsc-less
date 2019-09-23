@@ -1,10 +1,10 @@
 /*global console, process, require*/
 var path = require('path'), fs = require('fs'), colors = require('colors');
 
-let PUBLISHER_COMMENT_ADD_START = "<!--$Publish add - START$",
-    PUBLISHER_COMMENT_ADD_END = "$Publish add - END-->",
-    PUBLISHER_COMMENT_REMOVE_START = "<!-- $Publish remove - START$-->",
-    PUBLISHER_COMMENT_REMOVE_END = "<!-- $Publish remove - END$-->";
+let PUBLISHER_COMMENT_ADD_START = "<!--%Publish add - START%",
+    PUBLISHER_COMMENT_ADD_END = "%Publish add - END-->",
+    PUBLISHER_COMMENT_REMOVE_START = "<!-- %Publish remove - START%-->",
+    PUBLISHER_COMMENT_REMOVE_END = "<!-- %Publish remove - END%-->";
 
 function fromDir(startPath, filter)
 {
@@ -30,32 +30,52 @@ function fromDir(startPath, filter)
         {
             console.log('-- found: ', filename);
 
-            fs.readFile(filename, "utf8", function (err, data)
-            {
-                if (err)
-                {
-                    console.error("HTML-Publisher Error: ", err.red);
-                }
-                let filestring = data;
+            data = fs.readFileSync(filename, "utf8");
+            let filestring = editcomments(data);
 
-                filestring = publisherAddComment(filestring);
-                filestring = publisherRemoveComment(filestring);
-            });
+            fs.writeFileSync(filename, filestring);
+            console.log('Public HTML file '.green + filename.underline.green + ' saved!'.green);
         };
     };
 };
 
+function editcomments(contentstring) {
+  let filestring = contentstring;
+  filestring = publisherAddComment(filestring);
+  filestring = publisherRemoveComment(filestring);
+  filestring = removeAllComments(filestring);
+  filestring = removeEmptyLines(filestring);
+  return filestring;
+}
+
 function publisherAddComment(contentstring)
 {
-    let pubcommentcontent = contentstring.substr(contentstring.indexOf(PUBLISHER_COMMENT_ADD_START) + PUBLISHER_COMMENT_ADD_START.length, contentstring.indexOf(PUBLISHER_COMMENT_ADD_END) - contentstring.indexOf(PUBLISHER_COMMENT_ADD_START) - PUBLISHER_COMMENT_ADD_START.length);
-    console.log(pubcommentcontent);
+  var regexStart = new RegExp(PUBLISHER_COMMENT_ADD_START, "g");
+  var regexEnd   = new RegExp(PUBLISHER_COMMENT_ADD_END, "g");
 
-    return null;
+    let pubcommentcontent = contentstring.replace(regexStart, "");
+    pubcommentcontent = pubcommentcontent.replace(regexEnd, "");
+
+    return pubcommentcontent;
 }
 
 function publisherRemoveComment(contentstring)
 {
-    return null;
+    //TODO: using this regex does not work yet. Figure out why...
+    //var regex = new RegExp(PUBLISHER_COMMENT_REMOVE_START + "[\s\S]*?" + PUBLISHER_COMMENT_REMOVE_END , "g");
+    //return contentstring.replace(regex, "");
+
+    return contentstring.replace(/<!-- \%Publish remove - START\%-->[\s\S]*?<!-- \%Publish remove - END\%-->/g, "");
+}
+
+function removeAllComments(contentstring)
+{
+    return contentstring.replace(/<!--[\s\S]*?-->/g, "");
+}
+
+function removeEmptyLines(contentstring)
+{
+    return contentstring.replace(/\s+\n/g, "\n");
 }
 
 let outpath = null;
