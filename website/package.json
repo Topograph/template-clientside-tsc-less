@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.3.31",
+    "colors": "^1.4.0",
     "copyfiles": "^2.1.1",
     "less": "^3.10.3",
     "typescript": "^3.6.3",

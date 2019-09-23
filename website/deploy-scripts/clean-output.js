@@ -1,4 +1,5 @@
-var fs = require('fs');
+/*global console, process, require*/
+var fs = require('fs'), colors = require("colors");
 
 function deleteFolderRecursive(path) {
   if (fs.existsSync(path) && fs.lstatSync(path).isDirectory()) {
@@ -12,7 +13,7 @@ function deleteFolderRecursive(path) {
       }
     });
 
-    console.log(`Deleting directory "${path}"...`);
+    console.log(`Deleting directory "${path}"...`.underline);
     fs.rmdirSync(path);
   }
 };
@@ -21,14 +22,13 @@ function deleteFolderRecursive(path) {
 let deletepath = null;
 for(let i = 0; i< process.argv.length; i++) {
     let arg = process.argv[i];
-    console.log(arg);
     if(arg.startsWith("--")) {
         deletepath = arg.substr(2);
     }
 }
 
-console.warn("clean! -> recursively deleting directory", deletepath);
+console.warn("clean! -> recursively deleting directory", deletepath.underline.red);
 
 deleteFolderRecursive(deletepath);
 
-console.log("Successfully cleaned output directory!");
+console.log("Successfully cleaned output directory!".green.inverse);
