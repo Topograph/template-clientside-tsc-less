@@ -1,0 +1,31 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "debugall",
+            "group": "build",
+            "problemMatcher": [],
+        },
+        {
+            "type": "npm",
+            "script": "tsbuilddebug",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "lessbuild",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "publicall",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}
