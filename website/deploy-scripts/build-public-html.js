@@ -30,7 +30,7 @@ function fromDir(startPath, filter)
         {
             console.log('-- found: ', filename);
 
-            data = fs.readFileSync(filename, "utf8");
+            let data = fs.readFileSync(filename, "utf8");
             let filestring = editcomments(data);
 
             fs.writeFileSync(filename, filestring);
@@ -88,8 +88,5 @@ for (let i = 0; i < process.argv.length; i++)
         outpath = arg.substr(2);
     }
 }
-
-
-
 
 fromDir(outpath, '.html');

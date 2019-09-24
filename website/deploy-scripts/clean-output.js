@@ -27,7 +27,7 @@ for(let i = 0; i< process.argv.length; i++) {
     }
 }
 
-console.warn("clean! -> recursively deleting directory", deletepath.underline.red);
+console.warn("clean! -> recursively deleting directory".red, deletepath.underline.red);
 
 deleteFolderRecursive(deletepath);
 
