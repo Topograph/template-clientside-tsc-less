@@ -8,14 +8,16 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Topograph/website3d-npm.git"
+    "url": "git+https://github.com/Topograph/website3d-npm.git"
   },
   "scripts": {
     "debug build scripts": "--comment---------------------------------------------------------------------debug build scripts",
-    "debugall": "npm run cleandebug && npm run tsbuilddebug && npm run lessbuild && npm run copy-stuff-debug",
+    "debugall": "npm run increasepatch && npm run cleandebug && npm run tsbuilddebug && npm run lessbuild && npm run copy-stuff-debug",
     "debugfast": "npm run tsbuilddebug && npm run lessbuild",
+    "increasepatch": "npm version patch",
     "public build scripts": "--comment--------------------------------------------------------------------public build scripts",
-    "publicall": "npm run cleanpublic && npm run tsbuildpublic && npm run lessbuildpublic && npm run copy-stuff-public && npm run makepublichtml",
+    "publicall": "npm run increaseminor && npm run cleanpublic && npm run tsbuildpublic && npm run lessbuildpublic && npm run copy-stuff-public && npm run makepublichtml",
+    "increaseminor": "npm version minor",
     "compiler scripts": "--comment-------------------------------------------------------------------------compiler scripts",
     "tsbuilddebug": "tsc -p ./deploy-scripts/tsconfigs/debug.json",
     "tsbuildpublic": "tsc -p ./deploy-scripts/tsconfigs/public.json && npm run uglifyjs",
@@ -43,5 +45,9 @@
     "typescript": "^3.6.3",
     "uglify-js": "^3.6.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/Topograph/website3d-npm/issues"
+  },
+  "homepage": "https://github.com/Topograph/website3d-npm#readme"
 }
