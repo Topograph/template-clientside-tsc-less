@@ -28,24 +28,73 @@ change the namespace attribut to your preferred typescript namespace in the pack
 
 ## Usage
 
-run
+### Create debug versions
+
+to create a debug version call
 ```sh
-npm init
+npm run debugall
 ```
+
+this will:
+1. Increase "patch" in Version
+2. Delete all files in the dist/debug directory
+3. Compile all typescript-files in src/ts into dist/debug/js/bundle.js
+4. Compile all typescript-files in src/less into dist/debug/css/main.css
+5. Copy all other files to the dist/debug/ directory
+
+for a quick changes just run
+```sh
+npm run debugfast
+```
+to just compile typescript and less files
+
+### Create public versions
+
+to create a public version call
+```sh
+npm run publicall
+```
+
+this will:
+1. Increase "minor" in Version
+2. Delete all files in the dist/public directory
+3. Compile all typescript-files in src/ts into dist/public/js/bundle.min.js
+4. Compile all typescript-files in src/less into dist/public/css/main.css
+5. Minify javascript and css output
+6. Copy all other files to the dist/debug/ directory
+7. Remove html segments that are wrapped in "publish remove"-statements and add html segments that are wrapped inside "publish add"-statements in all source .html files. (see --> HTML generation)
+
+
+### HTML generation
+
+In order to only maintain one version of each .html file for both debug and public versions, while linking to different scripts and stylesheets (bundle.min.js instead of bundle.js for public version for example), or similar the build scripts process all .html files in the following way:
+
+1. All code wrapped in "publish remove"- Statements will be deleted for public version and therefore only be available for debug version:
+
+```html
+  <!-- %Publish remove - START%-->
+    <script src="js/bundle.js"></script>
+  <!-- %Publish remove - END%-->
+```
+2. All code wrapped in "publish remove"- Statements will be added for public version and be ignored in the debug version:
+
+```html
+  <!--%Publish add - START%
+    <script src="js/bundle.min.js"></script>
+  %Publish add - END-->
+```
+
+This process is part of the "makepublichtml" npm command which is part of the ```sh npm run publicall``` command
+
+#### Using Visual Studio Code
+
+If you're using VS Code you can use the tasks from .vscode/tasks.json to quickly access scripts or map them to shortcuts
 
 ## Author
 
 👤 **Luca Elsen**
 
 * Github: [@Topograph](https://github.com/Topograph)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Topograph/template-clientside-tsc-less/issuas).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
