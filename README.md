@@ -10,7 +10,7 @@
 
 > This is a base project layout with buildscripts in order to compile typescript and less files to an output directory and perform file copy and minimizer jobs, depending on the output type.
 
-### 🏠 [Homepage](https://github.com/Topograph/template-clientside-tsc-less)
+### 🏠 [Homepage](https://lucaelsen.de)
 
 ## Install
 
