@@ -84,7 +84,7 @@ In order to only maintain one version of each .html file for both debug and publ
   %Publish add - END-->
 ```
 
-This process is part of the "makepublichtml" npm command which is part of the ``` npm run publicall``` command
+This process is part of the ```npm run makepublichtml``` command which is part of the ```npm run publicall``` command
 
 #### Using Visual Studio Code
 
