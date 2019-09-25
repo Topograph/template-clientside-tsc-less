@@ -1,5 +1,6 @@
 {
   "name": "lucaelsen.de-3d",
+  "namespace": "LucaElsenWebsite",
   "version": "1.0.0",
   "description": "-",
   "main": "index.js",
@@ -10,30 +11,34 @@
     "url": "https://github.com/Topograph/website3d-npm.git"
   },
   "scripts": {
-    "debug build scripts": "--comment--",
+    "debug build scripts": "--comment---------------------------------------------------------------------debug build scripts",
     "debugall": "npm run cleandebug && npm run tsbuilddebug && npm run lessbuild && npm run copy-stuff-debug",
     "debugfast": "npm run tsbuilddebug && npm run lessbuild",
-    "public build scripts": "--comment--",
+    "public build scripts": "--comment--------------------------------------------------------------------public build scripts",
     "publicall": "npm run cleanpublic && npm run tsbuildpublic && npm run lessbuildpublic && npm run copy-stuff-public && npm run makepublichtml",
-    "compiler scripts": "--comment--",
+    "compiler scripts": "--comment-------------------------------------------------------------------------compiler scripts",
     "tsbuilddebug": "tsc -p ./deploy-scripts/tsconfigs/debug.json",
     "tsbuildpublic": "tsc -p ./deploy-scripts/tsconfigs/public.json && npm run uglifyjs",
     "lessbuild": "lessc src/less/main.less dist/debug/css/main.css",
     "lessbuildpublic": "lessc src/less/main.less dist/public/css/main.css &&  npm run cssminify",
-    "cssminify": "node deploy-scripts/css-minify.js --dist/public/css",
-    "file operation scripts": "--comment--",
+    "file operation scripts": "--comment--------------------------------------------------------------------file operation scripts",
     "copy-stuff-debug": "copyfiles -V --flat --all -e src/ts/**/* -e src/less/**/* src/**/* src/* dist/debug",
     "copy-stuff-public": "copyfiles -V --flat --all -e src/ts/**/* -e src/less/**/* src/**/* src/* dist/public",
     "cleandebug": "node deploy-scripts/clean-output.js --dist/debug",
     "cleanpublic": "node deploy-scripts/clean-output.js --dist/public",
+    "minimizer scripts": "--comment--------------------------------------------------------------------------minimizer scripts",
     "uglifyjs": "uglifyjs --compress --mangle --output dist/public/js/bundle.min.js -- dist/public/js/bundle.min.js ",
-    "makepublichtml": "node deploy-scripts/build-public-html.js --dist/public"
+    "cssminify": "node deploy-scripts/css-minify.js --dist/public/css",
+    "makepublichtml": "node deploy-scripts/build-public-html.js --dist/public",
+    "file generator": "--comment--------------------------------------------------------------------------file generator",
+    "newclass": "node deploy-scripts/create-class-file.js"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.31",
     "colors": "^1.4.0",
     "copyfiles": "^2.1.1",
     "crass": "^0.12.3",
+    "inquirer": "^7.0.0",
     "less": "^3.10.3",
     "typescript": "^3.6.3",
     "uglify-js": "^3.6.0"

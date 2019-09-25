@@ -26,6 +26,12 @@
             "script": "publicall",
             "group": "build",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "newclass",
+            "group": "none",
+            "problemMatcher": []
         }
     ]
 }
