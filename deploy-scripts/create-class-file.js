@@ -43,7 +43,9 @@ inquirer
             message: 'Class Name',
             validate: function (value)
             {
-                let valid = /(^[A-Z][a-zA-Z0-9$/]+(?<!\/)$)/.test(value); // eslint-disable-line //StartsWith Uppercase letter and contains only valid alphanumerics and does not end with a slash    //
+                let regexp =RegExp(/^[A-Z][a-zA-Z0-9$]+$/);
+                // let regexp =RegExp('(^[A-Z][a-zA-Z0-9$/]+(?<!\/)$)');
+                let valid = regexp.test(value); // eslint-disable-line //StartsWith Uppercase letter and contains only valid alphanumerics and does not end with a slash    //
                 if (valid)
                 {
                     return true;
