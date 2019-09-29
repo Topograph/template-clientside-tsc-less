@@ -12,8 +12,8 @@
   },
   "scripts": {
     "debug build scripts": "--comment---------------------------------------------------------------------debug build scripts",
-    "debugall": "npm run increasepatch && npm run cleandebug && npm run tsbuilddebug && npm run lessbuild && npm run copy-stuff-debug",
-    "debugfast": "npm run tsbuilddebug && npm run lessbuild",
+    "debugall": "node deploy-scripts/debug-all.js",
+    "debugallwatch": "node deploy-scripts/debug-all.js --watch",
     "increasepatch": "npm version patch",
     "public build scripts": "--comment--------------------------------------------------------------------public build scripts",
     "publicall": "npm run increaseminor && npm run cleanpublic && npm run tsbuildpublic && npm run lessbuildpublic && npm run copy-stuff-public && npm run makepublichtml",
@@ -41,6 +41,7 @@
     "copyfiles": "^2.1.1",
     "crass": "^0.12.3",
     "inquirer": "^7.0.0",
+    "glob-watcher": "^5.0.3",
     "less": "^3.10.3",
     "typescript": "^3.6.3",
     "uglify-js": "^3.6.0"

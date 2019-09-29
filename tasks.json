@@ -11,6 +11,12 @@
         },
         {
             "type": "npm",
+            "script": "debugallwatch",
+            "group": "build",
+            "problemMatcher": [],
+        },
+        {
+            "type": "npm",
             "script": "tsbuilddebug",
             "group": "build",
             "problemMatcher": []
@@ -30,7 +36,7 @@
         {
             "type": "npm",
             "script": "newclass",
-            "group": "none",
+            "group": "build",
             "problemMatcher": []
         }
     ]
