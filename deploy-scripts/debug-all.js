@@ -87,6 +87,7 @@ function runWatcherCommand(extension) {
         commandList.push(newcommand); //run special command if command corresponding to file ext has been found
     }
     else {
+        console.log(colors.italic.blue("No special actions found for current file change. Executing default job:", defaultCommandIdent))
         commandList.push(getCommandByIdent(defaultCommandIdent)) // runs default command if no matching extension/command has been found
     };
     runNextCommand(); //starts command
@@ -100,8 +101,7 @@ function getCommandByExt(extension) {
             return cmdObj;
         }
     }
-    console.log(colors.red("found no command by ext:", ident));
-
+    return null;
 }
 
 function getCommandByIdent(ident) {
@@ -111,7 +111,7 @@ function getCommandByIdent(ident) {
             return cmdObj;
         }
     }
-    console.log(colors.red("found no command by ident:", ident));
+    return null;
 }
 
 
