@@ -40,10 +40,11 @@ let debugSteps = [
 ];
 
 
-let commandList = [];
-let commandIndex = 0;
-let watchEnabled = false;
-let watcherReady = false;
+let commandList = [],
+    commandIndex = 0,
+    watchEnabled = false,
+    watcherReady = false,
+    commandsRunnding = false;
 
 //read args. supported arg: --watch enables file watcher
 for (let i = 0; i < process.argv.length; i++) {
@@ -63,6 +64,12 @@ function initWatcher() {
     watcherReady = true;
 
     watcher.on('change', function (path, stat) {
+        if(commandsRunnding) {
+            console.log(colors.bold.red(`
+            Ignored file change event, because other commands are currently running. 
+            Output might not be up to date!`));
+            return; 
+        }
         console.log(colors.italic.blue("filechange registered", path));
         let lastDot = path.lastIndexOf(".");
 
@@ -117,6 +124,7 @@ function getCommandByIdent(ident) {
 
 
 function runNextCommand() {
+    commandsRunnding = true;
     let cmdObj = commandList[commandIndex];
     console.log(colors.blue.italic("-->" + cmdObj.comment)); //log next command
     runCommand(cmdObj.command, function (out, err) {
@@ -132,6 +140,7 @@ function runNextCommand() {
             console.log(colors.bold.green("all commands finished!"));
             commandList = [];
             commandIndex = 0;
+            commandsRunnding = false;
 
             //enable watcher if watch has been enabled by call param and watcher is not already running
             if (watchEnabled && !watcherReady) {
