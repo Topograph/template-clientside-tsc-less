@@ -1,21 +1,11 @@
 /// <reference types="jquery" />
+/// <reference path="class2.ts" />
+namespace ExampleNamespace {
+    export class Index {
+        constructor() {
+            console.log("hello");
+            let TestClass2 = new ExampleClass2();
 
-class lurch {
-    constructor() {
-        console.log("hello lurch2");
-        jQuery("body").on("click", ()=> {
-            alert("yeeeehaaw!");
-        });
-
-        let testvar = true;
-
-        testvar = false;
-
-        this.tryFunctionname(testvar);
-
-    }
-
-    private tryFunctionname(kokolores: boolean) {
-        console.log(kokolores);
+        }
     }
 }
