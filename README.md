@@ -42,11 +42,11 @@ this will:
 4. Compile all typescript-files in src/less into dist/debug/css/main.css
 5. Copy all other files to the dist/debug/ directory
 
-for a quick changes just run
+you can run the following command to enable a file-watcher, which will automatically compile and copy files on changes.
+
 ```sh
-npm run debugfast
+npm run debugallwatch
 ```
-to just compile typescript and less files
 
 ### Create public versions
 
